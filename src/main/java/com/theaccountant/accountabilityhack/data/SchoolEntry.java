@@ -2,6 +2,7 @@ package com.theaccountant.accountabilityhack.data;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
@@ -14,7 +15,8 @@ import java.math.BigDecimal;
 @Data
 @Entity
 @Table(name = "schools")
-public class SchoolEntry {
+@ToString
+public final class SchoolEntry {
 
     @Id
     @GeneratedValue(generator = "increment")
