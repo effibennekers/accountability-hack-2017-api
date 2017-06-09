@@ -12,7 +12,7 @@ public final class DatabaseReader implements Processor {
     @Override
     public void process(final SchoolRegistry registry) throws IOException {
         final DatabaseService databaseService = new DatabaseService();
-        final List<SchoolEntry> all = databaseService.getAll(SchoolEntry.class, 0, 100);
+        final List<SchoolEntry> all = databaseService.getAll(SchoolEntry.class, 0, -1);
         registry.addAllSchools(all);
         System.out.println("Loaded all records from database: " + registry.size());
     }
