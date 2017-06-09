@@ -41,16 +41,16 @@ public final class CsvReader {
     /**
      * Get field from current record.
      */
-    public final String get(final String fieldname) {
+    public final String getString(final String fieldname) {
         return currentRecord[fieldIndices.get(fieldname)];
     }
 
-    public final BigDecimal getMoney(final String fieldname) {
-        final String string = get(fieldname);
+    public final BigDecimal getBigDecimal(final String fieldname) {
+        final String string = getString(fieldname);
         return new BigDecimal(string.replaceAll("\\.", "").replaceAll(",", "."));
     }
 
     public final int getInt(final String fieldname) {
-        return Integer.parseInt(get(fieldname));
+        return Integer.parseInt(getString(fieldname));
     }
 }

@@ -12,7 +12,7 @@ public final class PersoneelsBekostigingProcessor implements Processor {
 
         final CsvReader reader = new CsvReader("03.-personele-bekostiging-bo-2015-2016.csv");
         while (reader.next()) {
-            final String brin = reader.get("BRIN_NUMMER");
+            final String brin = reader.getString("BRIN_NUMMER");
             final SchoolEntry entry;
             if (registry.isSchoolPresent(brin)) {
                 entry = registry.getSchoolByBrin(brin);
@@ -21,10 +21,10 @@ public final class PersoneelsBekostigingProcessor implements Processor {
                 registry.addSchool(entry);
             }
 
-            final BigDecimal onderbouw = reader.getMoney("ONDERBOUW");
-            final BigDecimal bovenbouw = reader.getMoney("BOVENBOUW");
-            final BigDecimal directie = reader.getMoney("DIRECTIETOESLAG");
-            final BigDecimal totaal = reader.getMoney("TOTAAL");
+            final BigDecimal onderbouw = reader.getBigDecimal("ONDERBOUW");
+            final BigDecimal bovenbouw = reader.getBigDecimal("BOVENBOUW");
+            final BigDecimal directie = reader.getBigDecimal("DIRECTIETOESLAG");
+            final BigDecimal totaal = reader.getBigDecimal("TOTAAL");
 
             entry.setBekostigingPersoneel(onderbouw.add(bovenbouw));
             entry.setBekostigingDirectie(directie);
