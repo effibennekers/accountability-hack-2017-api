@@ -3,6 +3,7 @@ package com.theaccountant.accountabilityhack.data;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,6 +19,12 @@ public final class SchoolRegistry implements Iterable<SchoolEntry> {
 
     public final boolean isSchoolPresent(final String brin) {
         return map.containsKey(brin);
+    }
+
+    public final void addAllSchools(final List<SchoolEntry> entries) {
+        for (final SchoolEntry entry : entries) {
+            addSchool(entry);
+        }
     }
 
     public final void addSchool(final SchoolEntry school) {
