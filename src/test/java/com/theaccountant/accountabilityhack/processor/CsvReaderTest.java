@@ -10,6 +10,6 @@ public final class CsvReaderTest {
     public void testReadFile() throws IOException {
         final CsvReader reader = new CsvReader("01.-leerlingen-po-soort-po,-cluster,-leeftijd-2015-2016.csv");
         reader.next();
-        System.out.println(reader.get("BRIN_NUMMER"));
+        System.out.println(reader.getString("BRIN_NUMMER"));
     }
 }

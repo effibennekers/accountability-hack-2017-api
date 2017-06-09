@@ -10,7 +10,7 @@ public final class LeerlingenAantalProcessor implements Processor {
     public void process(final SchoolRegistry registry) throws IOException {
         final CsvReader reader = new CsvReader("01.-leerlingen-bo-gewicht,-leeftijd-2016-2017.csv");
         while (reader.next()) {
-            final String brin = reader.get("BRIN_NUMMER");
+            final String brin = reader.getString("BRIN_NUMMER");
             final SchoolEntry entry;
             if (registry.isSchoolPresent(brin)) {
                 entry = registry.getSchoolByBrin(brin);
