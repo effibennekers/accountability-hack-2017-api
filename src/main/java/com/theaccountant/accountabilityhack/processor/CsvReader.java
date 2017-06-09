@@ -40,7 +40,11 @@ public final class CsvReader {
     /**
      * Get field from current record.
      */
-    public String get(final String fieldname) {
+    public final String get(final String fieldname) {
         return currentRecord[fieldIndices.get(fieldname)];
+    }
+
+    public final int getInt(final String fieldname) {
+        return Integer.parseInt(get(fieldname));
     }
 }

@@ -27,4 +27,6 @@ public final class SchoolEntry {
 
     private Coordinate geo;
 
+    private int totaalAantalLeerlingen;
+
 }

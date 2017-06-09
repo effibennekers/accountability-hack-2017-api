@@ -5,10 +5,10 @@ import com.theaccountant.accountabilityhack.data.SchoolRegistry;
 
 import java.io.IOException;
 
-public final class LeerlingenPoSoortProcessor implements Processor {
+public final class LeerlingenAantalProcessor implements Processor {
 
     public void process(final SchoolRegistry registry) throws IOException {
-        final CsvReader reader = new CsvReader("01.-leerlingen-po-soort-po,-cluster,-leeftijd-2016-2017.csv");
+        final CsvReader reader = new CsvReader("01.-leerlingen-bo-gewicht,-leeftijd-2016-2017.csv");
         while (reader.next()) {
             final String brin = reader.get("BRIN_NUMMER");
             final SchoolEntry entry;
@@ -19,7 +19,7 @@ public final class LeerlingenPoSoortProcessor implements Processor {
                 registry.addSchool(entry);
             }
 
-            // TODO: setters
+            entry.setTotaalAantalLeerlingen(reader.getInt("TOTAAL"));
         }
     }
 }
