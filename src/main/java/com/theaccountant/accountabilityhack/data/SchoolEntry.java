@@ -41,6 +41,11 @@ public final class SchoolEntry {
 
     private Integer totaalAantalLeerlingen;
 
+    private String denomination;
+    private String soortPo;
+    private BigDecimal cetAverage;
+    private BigDecimal iepAverage;
+
     private BigDecimal fteDirectie;
     private BigDecimal fteLeerkrachten;
     private BigDecimal fteInOpleiding;
