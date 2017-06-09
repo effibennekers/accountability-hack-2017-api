@@ -28,8 +28,8 @@ public class SchoolEntry {
 
     private Integer totaalAantalLeerlingen;
 
-    private Integer fteDirectie;
-    private Integer fteLeerkrachten;
-    private Integer fteOndersteunend;
+    private String fteDirectie;
+    private String fteLeerkrachten;
+    private String fteOndersteunend;
 
 }
