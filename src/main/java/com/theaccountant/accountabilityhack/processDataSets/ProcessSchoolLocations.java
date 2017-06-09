@@ -30,7 +30,7 @@ public class ProcessSchoolLocations {
 
     private static Function<String, SchoolEntry> mapToItem = (line) -> {
         String[] p = line.split(COMMA);// a CSV has comma separated lines
-        SchoolEntry item = new SchoolEntry();
+        SchoolEntry item = SchoolEntry.builder().build();
         item.setBrin(p[2]);
         return item;
     };
