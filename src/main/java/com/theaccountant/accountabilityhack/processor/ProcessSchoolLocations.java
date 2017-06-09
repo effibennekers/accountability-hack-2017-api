@@ -19,43 +19,28 @@ public final class ProcessSchoolLocations implements Processor {
 
     @Override
     public void process(final SchoolRegistry registry) throws IOException {
-        for (final SchoolEntry entry : processInputFile()) {
-            registry.addSchool(entry);
+        final CsvReader reader = new CsvReader("01.-hoofdvestigingen-basisonderwijs-2017.csv");
+
+        while (reader.next()) {
+            final String brin = reader.getString("BRIN_NUMMER");
+            final SchoolEntry entry;
+            if (registry.isSchoolPresent(brin)) {
+                entry = registry.getSchoolByBrin(brin);
+            } else {
+                entry = SchoolEntry.builder().brin(brin).build();
+                registry.addSchool(entry);
+            }
+
+            entry.setAddress(Address.builder()
+                    .streetname(reader.getString("STRAATNAAM"))
+                    .streetNr(reader.getString("HUISNUMMER-TOEVOEGING"))
+                    .zipcode(reader.getString("POSTCODE"))
+                    .city(reader.getString("CITY"))
+                    .build());
+
+            entry.setBevoegdGezag(reader.getInt("BEVOEGD GEZAG NUMMER"));
+            entry.setName(reader.getString("INSTELLINGSNAAM"));
         }
-    }
-
-    public static List<SchoolEntry> processInputFile() throws IOException {
-        List<SchoolEntry> inputList = new ArrayList<SchoolEntry>();
-        InputStream inputFS = ProcessSchoolLocations.class.getClassLoader().getResourceAsStream("01.-hoofdvestigingen-basisonderwijs-2017.csv");
-        BufferedReader br = new BufferedReader(new InputStreamReader(inputFS));
-
-        // skip the header of the csv
-        inputList = br.lines().skip(1).map(mapToItem).collect(Collectors.toList());
-        br.close();
         System.out.println("Done processing addresses");
-        return inputList;
     }
-
-    private static Function<String, SchoolEntry> mapToItem = (line) -> {
-
-        String[] p = line.split(COMMA);// a CSV has comma separated lines
-
-        // School adres
-        Address adres = Address.builder().
-                streetname(p[7]).
-                streetNr(p[4]).
-                zipcode(p[5]).
-                city(p[6]).
-                build();
-
-        // SchoolEntry data
-        SchoolEntry item = SchoolEntry.builder().
-                brin(p[2]).
-                bevoegdGezag(Integer.valueOf(p[1])).
-                name(p[3]).
-                address(adres).
-                build();
-
-        return item;
-    };
 }
