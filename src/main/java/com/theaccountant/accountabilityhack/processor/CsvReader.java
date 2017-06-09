@@ -53,7 +53,14 @@ public final class CsvReader {
 
     public final BigDecimal getBigDecimal(final String fieldname) {
         final String string = getString(fieldname);
-        return new BigDecimal(string.replaceAll("\\.", "").replaceAll(",", "."));
+        if (string == null || "".equals(string) || " ".equals(string)) {
+            return null;
+        }
+        try {
+            return new BigDecimal(string.replaceAll("\\.", "").replaceAll(",", "."));
+        } catch(NumberFormatException e) {
+            throw new IllegalStateException("Cannot parse '" + string + "' as BigDecimal");
+        }
     }
 
     public final int getInt(final String fieldname) {

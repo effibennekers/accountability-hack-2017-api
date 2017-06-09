@@ -22,7 +22,7 @@ public final class ProcessSchoolLocations implements Processor {
         final CsvReader reader = new CsvReader("01.-hoofdvestigingen-basisonderwijs-2017.csv");
 
         while (reader.next()) {
-            final String brin = reader.getString("BRIN_NUMMER");
+            final String brin = reader.getString("BRIN NUMMER");
             final SchoolEntry entry;
             if (registry.isSchoolPresent(brin)) {
                 entry = registry.getSchoolByBrin(brin);
@@ -35,7 +35,7 @@ public final class ProcessSchoolLocations implements Processor {
                     .streetname(reader.getString("STRAATNAAM"))
                     .streetNr(reader.getString("HUISNUMMER-TOEVOEGING"))
                     .zipcode(reader.getString("POSTCODE"))
-                    .city(reader.getString("CITY"))
+                    .city(reader.getString("PLAATSNAAM"))
                     .build());
 
             entry.setBevoegdGezag(reader.getInt("BEVOEGD GEZAG NUMMER"));
