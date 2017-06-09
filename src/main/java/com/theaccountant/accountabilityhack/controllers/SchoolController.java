@@ -38,18 +38,22 @@ public class SchoolController {
     private void enrichWithRatings(final List<SchoolEntry> schools) {
         for (final SchoolEntry entry : schools) {
             final BigDecimal leerlingen = entry.getTotaalAantalLeerlingen() == null ? new BigDecimal(0) : new BigDecimal(entry.getTotaalAantalLeerlingen());
-            final BigDecimal fteDirectie = entry.getFteDirectie();
-            final BigDecimal fteLeerkrachten = entry.getFteLeerkrachten();
-            final BigDecimal bekostigingPersoneel = entry.getBekostigingPersoneel();
+            final BigDecimal fteDirectie = entry.getFteDirectie() == null ? new BigDecimal(0) : entry.getFteDirectie();
+            final BigDecimal fteLeerkrachten = entry.getFteLeerkrachten() == null ? new BigDecimal(0) : entry.getFteLeerkrachten();
+            final BigDecimal bekostigingPersoneel = entry.getBekostigingPersoneel() == null ? new BigDecimal(0) : entry.getBekostigingPersoneel();
+            final BigDecimal bekostigingOverig = entry.getBekostigingPersoneelOverig() == null ? new BigDecimal(0) : entry.getBekostigingPersoneelOverig();
+            final BigDecimal bekostigingBoard = entry.getBekostigingDirectie() == null ? new BigDecimal(0) : entry.getBekostigingDirectie();
             final BigDecimal klasgrootte = fteLeerkrachten.intValue() == 0 ? new BigDecimal(0) : leerlingen.divide(fteLeerkrachten, RoundingMode.HALF_UP);
-            final BigDecimal totalIncome = entry.getBekostigingDirectie().add(entry.getBekostigingPersoneel()).add(entry.getBekostigingPersoneelOverig());
+            final BigDecimal totalIncome = bekostigingBoard.add(bekostigingPersoneel).add(bekostigingOverig);
+            final BigDecimal totalMaterialHolding = entry.getTotalMaterialInstantHolding() == null ? new BigDecimal(0) : entry.getTotalMaterialInstantHolding();
+            final BigDecimal cetAverage = entry.getCetAverage() == null ? new BigDecimal(0) : entry.getCetAverage();
             final Ratings ratings = new Ratings();
             ratings.setClassSize(klasgrootte.doubleValue());
             ratings.setIncomePerStudent(totalIncome.doubleValue());
-            ratings.setNonPersonelCostsPerStudent(leerlingen.intValue() == 0 ? 0d : entry.getTotalMaterialInstantHolding().divide(leerlingen, RoundingMode.HALF_UP).doubleValue());
+            ratings.setNonPersonelCostsPerStudent(leerlingen.intValue() == 0 ? 0d : totalMaterialHolding.divide(leerlingen, RoundingMode.HALF_UP).doubleValue());
             ratings.setFteBoardPerFteTeacher(fteLeerkrachten.intValue() == 0 ? 0d : fteDirectie.divide(fteLeerkrachten, RoundingMode.HALF_UP).doubleValue());
-            ratings.setCostsBoardPerCostsPersonel(bekostigingPersoneel.intValue() == 0 ? 0d : entry.getBekostigingDirectie().divide(bekostigingPersoneel, RoundingMode.HALF_UP).doubleValue());
-            ratings.setCitoPerClassSize(entry.getCetAverage() == null || klasgrootte.intValue() == 0 ? 0d : entry.getCetAverage().divide(klasgrootte, RoundingMode.HALF_UP).doubleValue());
+            ratings.setCostsBoardPerCostsPersonel(bekostigingPersoneel.intValue() == 0 ? 0d : bekostigingBoard.divide(bekostigingPersoneel, RoundingMode.HALF_UP).doubleValue());
+            ratings.setCitoPerClassSize(cetAverage == null || klasgrootte.intValue() == 0 ? 0d : cetAverage.divide(klasgrootte, RoundingMode.HALF_UP).doubleValue());
             entry.setRatings(ratings);
         }
     }
