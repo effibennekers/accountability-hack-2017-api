@@ -6,7 +6,7 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://0.tcp.ngrok.io:15689/theaccountant?createDatabaseIfNotExist=true</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/theaccountant?createDatabaseIfNotExist=true</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">TheAccountant</property>
         <property name="hibernate.connection.pool_size">10</property>
@@ -15,6 +15,10 @@
         <property name="hibernate.current_session_context_class">thread</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
 
-        <mapping class="com.theaccountant.accountabilityhack.data.TestEntity"/>
+        <mapping class="com.theaccountant.accountabilityhack.data.Address"/>
+        <mapping class="com.theaccountant.accountabilityhack.data.Coordinate"/>
+        <mapping class="com.theaccountant.accountabilityhack.data.SchoolEntry"/>
+
+
     </session-factory>
 </hibernate-configuration>

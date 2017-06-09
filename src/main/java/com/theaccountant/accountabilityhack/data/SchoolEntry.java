@@ -1,13 +1,17 @@
 package com.theaccountant.accountabilityhack.data;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.ToString;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 
@@ -15,8 +19,9 @@ import java.math.BigDecimal;
 @Data
 @Entity
 @Table(name = "schools")
-@ToString
-public final class SchoolEntry {
+@NoArgsConstructor
+@AllArgsConstructor
+public class SchoolEntry {
 
     @Id
     @GeneratedValue(generator = "increment")
@@ -26,7 +31,10 @@ public final class SchoolEntry {
     private String brin;
     private Integer bevoegdGezag;
     private String name;
+
+    @OneToOne(fetch = FetchType.LAZY,  cascade = CascadeType.ALL)
     private Address address;
+    @OneToOne(fetch = FetchType.LAZY,  cascade = CascadeType.ALL)
     private Coordinate geo;
 
     private Integer totaalAantalLeerlingen;
