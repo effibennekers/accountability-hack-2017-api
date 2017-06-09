@@ -4,7 +4,10 @@ import com.theaccountant.accountabilityhack.data.Address;
 import com.theaccountant.accountabilityhack.data.SchoolEntry;
 import com.theaccountant.accountabilityhack.data.SchoolRegistry;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
@@ -36,15 +39,21 @@ public final class ProcessSchoolLocations implements Processor {
 
         String[] p = line.split(COMMA);// a CSV has comma separated lines
 
-        // SchoolEntry data
-        SchoolEntry item = SchoolEntry.builder().build();
-        item.setBrin(p[2]);
-        item.setBevoegdGezag(Integer.valueOf(p[1]));
-        item.setName(p[3]);
-
         // School adres
-        Address adres = new Address(p[7], p[4], p[5],  p[6]);
-        item.setAddress(adres);
+        Address adres = Address.builder().
+                streetname(p[7]).
+                streetNr(p[4]).
+                zipcode(p[5]).
+                city(p[6]).
+                build();
+
+        // SchoolEntry data
+        SchoolEntry item = SchoolEntry.builder().
+                brin(p[2]).
+                bevoegdGezag(Integer.valueOf(p[1])).
+                name(p[3]).
+                address(adres).
+                build();
 
         return item;
     };

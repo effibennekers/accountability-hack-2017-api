@@ -43,6 +43,7 @@ public final class CoordinateService {
         final JSONObject location = (JSONObject) geometry.get("location");
         final double lat = (Double) location.get("lat");
         final double lng = (Double) location.get("lng");
-        return new Coordinate(lat, lng);
+        return Coordinate.builder().latitude(lat).longitude(lng).build();
+
     }
 }

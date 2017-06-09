@@ -15,7 +15,7 @@ public final class LeerlingenAantalProcessor implements Processor {
             if (registry.isSchoolPresent(brin)) {
                 entry = registry.getSchoolByBrin(brin);
             } else {
-                entry = new SchoolEntry(brin);
+                entry = SchoolEntry.builder().brin(brin).build();
                 registry.addSchool(entry);
             }
 

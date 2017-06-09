@@ -1,28 +1,28 @@
 package com.theaccountant.accountabilityhack.data;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 
-@AllArgsConstructor
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 @Builder
-@Getter
-@Setter
-@ToString
-public final class SchoolEntry {
+@Data
+@Entity
+@Table(name = "schools")
+public class SchoolEntry {
 
-    public SchoolEntry(final String brin) {
-        this.brin = brin;
-    }
+    @Id
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
+    private long id;
 
     private String brin;
-
     private Integer bevoegdGezag;
-
     private String name;
-
     private Address address;
     private Coordinate geo;
 
