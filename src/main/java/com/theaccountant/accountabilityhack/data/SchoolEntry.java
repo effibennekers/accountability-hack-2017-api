@@ -49,5 +49,5 @@ public final class SchoolEntry {
 
     private BigDecimal bekostigingPersoneel;
     private BigDecimal bekostigingDirectie;
-    private BigDecimal bekostigingOverig;
+    private BigDecimal bekostigingPersoneelOverig;
 }
