@@ -24,7 +24,7 @@ public class ProcessSchoolLocations {
 
     public static List<SchoolEntry> processInputFile() throws IOException {
         List<SchoolEntry> inputList = new ArrayList<SchoolEntry>();
-        InputStream inputFS = ProcessSchoolLocations.class.getClassLoader().getResourceAsStream("hoofdvestigingen-basisonderwijs.csv");
+        InputStream inputFS = ProcessSchoolLocations.class.getClassLoader().getResourceAsStream("01.-hoofdvestigingen-basisonderwijs-2017.csv");
         BufferedReader br = new BufferedReader(new InputStreamReader(inputFS));
 
         // skip the header of the csv
