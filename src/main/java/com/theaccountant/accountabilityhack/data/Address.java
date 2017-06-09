@@ -13,4 +13,5 @@ public final class Address {
     private int streetNr;
     private String streetNrExt;
     private String zipcode;
+    private String city;
 }
