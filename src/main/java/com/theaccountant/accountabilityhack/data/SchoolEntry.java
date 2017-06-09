@@ -31,7 +31,9 @@ public class SchoolEntry {
 
     private BigDecimal fteDirectie;
     private BigDecimal fteLeerkrachten;
+    private BigDecimal fteInOpleiding;
     private BigDecimal fteOndersteunend;
+    private BigDecimal fteOnbekend;
 
     private BigDecimal bekostigingPersoneel;
     private BigDecimal bekostigingDirectie;

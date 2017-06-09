@@ -22,5 +22,6 @@ public final class LeerlingenAantalProcessor implements Processor {
             final int oldValue = entry.getTotaalAantalLeerlingen() == null ? 0 : entry.getTotaalAantalLeerlingen();
             entry.setTotaalAantalLeerlingen(oldValue + reader.getInt("TOTAAL"));
         }
+        System.out.println("Done processing aantal leerlingen");
     }
 }

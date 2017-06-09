@@ -11,7 +11,7 @@ public final class FteAantalProcessor implements Processor {
     public void process(final SchoolRegistry registry) throws IOException {
         final CsvReader reader = new CsvReader("02.-po-fte-owtype-bestuur-brin-functie.csv");
         while (reader.next()) {
-            final String brin = reader.getString("BRIN_NUMMER");
+            final String brin = reader.getString("BRIN NUMMER");
             final SchoolEntry entry;
             if (registry.isSchoolPresent(brin)) {
                 entry = registry.getSchoolByBrin(brin);
@@ -31,10 +31,17 @@ public final class FteAantalProcessor implements Processor {
             case "Onderwijsondersteunend personeel (OOP/OBP)":
                 entry.setFteOndersteunend(fte);
                 break;
+            case "Leraren in opleiding (LIO)":
+                entry.setFteInOpleiding(fte);
+                break;
+            case "Onbekend":
+                entry.setFteOnbekend(fte);
+                break;
             default:
                 System.err.println("Unknown functie: " + functie);
                 break;
             }
         }
+        System.out.println("Done processing aantal FTE");
     }
 }

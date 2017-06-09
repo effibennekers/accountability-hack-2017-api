@@ -30,5 +30,6 @@ public final class PersoneelsBekostigingProcessor implements Processor {
             entry.setBekostigingDirectie(directie);
             entry.setBekostigingOverig(totaal.subtract(directie).subtract(onderbouw).subtract(bovenbouw));
         }
+        System.out.println("Done processing aantal personeel bekostiging");
     }
 }

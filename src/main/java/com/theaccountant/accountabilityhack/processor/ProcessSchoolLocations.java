@@ -32,6 +32,7 @@ public final class ProcessSchoolLocations implements Processor {
         // skip the header of the csv
         inputList = br.lines().skip(1).map(mapToItem).collect(Collectors.toList());
         br.close();
+        System.out.println("Done processing addresses");
         return inputList;
     }
 

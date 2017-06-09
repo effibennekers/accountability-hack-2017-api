@@ -44,6 +44,5 @@ public final class CoordinateService {
         final double lat = (Double) location.get("lat");
         final double lng = (Double) location.get("lng");
         return Coordinate.builder().latitude(lat).longitude(lng).build();
-
     }
 }

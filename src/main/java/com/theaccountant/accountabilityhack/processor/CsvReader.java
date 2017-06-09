@@ -10,6 +10,8 @@ import java.util.Map;
 
 public final class CsvReader {
 
+    private String filename;
+
     private final BufferedReader reader;
 
     private final Map<String, Integer> fieldIndices = new HashMap<>();
@@ -17,6 +19,7 @@ public final class CsvReader {
     private String[] currentRecord;
 
     public CsvReader(final String filename) throws IOException {
+        this.filename = filename;
         final InputStream inputFS = CsvReader.class.getClassLoader().getResourceAsStream(filename);
         reader = new BufferedReader(new InputStreamReader(inputFS));
         final String[] fieldnames = reader.readLine().split(";");
@@ -42,6 +45,9 @@ public final class CsvReader {
      * Get field from current record.
      */
     public final String getString(final String fieldname) {
+        if (!fieldIndices.containsKey(fieldname)) {
+            throw new IllegalArgumentException(filename + " does not contain field " + fieldname);
+        }
         return currentRecord[fieldIndices.get(fieldname)];
     }
 

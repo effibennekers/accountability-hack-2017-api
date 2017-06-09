@@ -14,5 +14,6 @@ public final class CoordinateProcessor implements Processor {
         for (final SchoolEntry entry : registry) {
             entry.setGeo(coordinateService.queryCoordinates(entry.getAddress()));
         }
+        System.out.println("Done processing coordinates");
     }
 }
