@@ -26,8 +26,6 @@ public class SchoolController {
     @RequestMapping("/schools")
     @ResponseBody
     List<SchoolEntry> schools() {
-        SchoolEntry schoolEntry = SchoolEntry.builder().brin("haha").address(Address.builder().build()).geo(Coordinate.builder().build()).build();
-        databaseService.save(schoolEntry);
         return databaseService.getAll(SchoolEntry.class);
     }
 
