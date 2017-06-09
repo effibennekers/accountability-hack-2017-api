@@ -23,8 +23,8 @@ public final class CoordinateService {
     private static final JSONParser jsonParser = new JSONParser();
 
     public final Coordinate queryCoordinates(final Address address) {
-        final String query = String.format("%s %d%s %s, %s", address.getStreetname(), address.getStreetNr(),
-                address.getStreetNrExt() == null ? "" : address.getStreetNrExt(), address.getZipcode(), address.getCity()).replace(' ', '-');
+        final String query = String.format("%s %s %s, %s", address.getStreetname(), address.getStreetNr(),
+               address.getZipcode(), address.getCity()).replace(' ', '-');
         final JSONObject json;
         try {
             final URL url = new URL(GOOGLE_API + query);
