@@ -16,10 +16,13 @@ public class ProcessSchoolLocations {
 
     private static final java.lang.String COMMA = ",";
 
+    public static void main(String...args) throws IOException {
+        processInputFile();
+    }
+
     public static List<SchoolEntry> processInputFile() throws IOException {
         List<SchoolEntry> inputList = new ArrayList<SchoolEntry>();
-        File inputF = new File("../../../../resources/hoofdvestigingen-basisonderwijs.csv");
-        InputStream inputFS = new FileInputStream(inputF);
+        InputStream inputFS = ProcessSchoolLocations.class.getClassLoader().getResourceAsStream("hoofdvestigingen-basisonderwijs.csv");
         BufferedReader br = new BufferedReader(new InputStreamReader(inputFS));
 
         // skip the header of the csv
