@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.math.BigDecimal;
 
 @Builder
 @Data
@@ -28,8 +29,11 @@ public class SchoolEntry {
 
     private Integer totaalAantalLeerlingen;
 
-    private String fteDirectie;
-    private String fteLeerkrachten;
-    private String fteOndersteunend;
+    private BigDecimal fteDirectie;
+    private BigDecimal fteLeerkrachten;
+    private BigDecimal fteOndersteunend;
 
+    private BigDecimal bekostigingPersoneel;
+    private BigDecimal bekostigingDirectie;
+    private BigDecimal bekostigingOverig;
 }

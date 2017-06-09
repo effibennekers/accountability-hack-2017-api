@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,6 +43,11 @@ public final class CsvReader {
      */
     public final String get(final String fieldname) {
         return currentRecord[fieldIndices.get(fieldname)];
+    }
+
+    public final BigDecimal getMoney(final String fieldname) {
+        final String string = get(fieldname);
+        return new BigDecimal(string.replaceAll("\\.", "").replaceAll(",", "."));
     }
 
     public final int getInt(final String fieldname) {

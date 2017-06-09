@@ -1,6 +1,5 @@
 package com.theaccountant.accountabilityhack.processor;
 
-import com.theaccountant.accountabilityhack.data.SchoolEntry;
 import com.theaccountant.accountabilityhack.data.SchoolRegistry;
 
 import java.io.IOException;
@@ -15,6 +14,7 @@ public final class FileProcessor {
 
         new LeerlingenAantalProcessor().process(registry);
         new FteAantalProcessor().process(registry);
+        new PersoneelsBekostigingProcessor().process(registry);
 //        new CoordinateProcessor().process(registry);
 
         // TODO: save to database
