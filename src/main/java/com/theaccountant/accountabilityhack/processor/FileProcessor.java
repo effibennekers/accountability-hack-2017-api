@@ -14,6 +14,7 @@ public final class FileProcessor {
         new ProcessSchoolLocations().process(registry);
 
         new LeerlingenAantalProcessor().process(registry);
+        new FteAantalProcessor().process(registry);
 //        new CoordinateProcessor().process(registry);
 
         // TODO: save to database
