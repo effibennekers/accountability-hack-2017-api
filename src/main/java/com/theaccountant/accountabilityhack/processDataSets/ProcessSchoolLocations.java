@@ -1,5 +1,6 @@
 package com.theaccountant.accountabilityhack.processDataSets;
 
+import com.theaccountant.accountabilityhack.data.Address;
 import com.theaccountant.accountabilityhack.data.SchoolEntry;
 
 import java.io.*;
@@ -14,10 +15,11 @@ import java.util.stream.Collectors;
 public class ProcessSchoolLocations {
 
 
-    private static final java.lang.String COMMA = ",";
+    private static final java.lang.String COMMA = ";";
 
     public static void main(String...args) throws IOException {
-        processInputFile();
+        List<SchoolEntry> schools = processInputFile();
+        System.out.println("schools : " + schools.size());
     }
 
     public static List<SchoolEntry> processInputFile() throws IOException {
@@ -32,9 +34,19 @@ public class ProcessSchoolLocations {
     }
 
     private static Function<String, SchoolEntry> mapToItem = (line) -> {
+
         String[] p = line.split(COMMA);// a CSV has comma separated lines
+
+        // SchoolEntry data
         SchoolEntry item = SchoolEntry.builder().build();
         item.setBrin(p[2]);
+        item.setBevoegdGezag(Integer.valueOf(p[1]));
+        item.setName(p[3]);
+
+        // School adres
+        Address adres = new Address(p[7], p[4], p[5],  p[6]);
+        item.setAddress(adres);
+
         return item;
     };
 }
