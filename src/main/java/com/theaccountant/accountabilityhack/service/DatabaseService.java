@@ -25,13 +25,15 @@ public class DatabaseService {
         return entity;
     }
 
-    public <T> List<T> getAll(Class<T> clazz) {
+    public <T> List<T> getAll(Class<T> clazz, Integer start, Integer maxrows) {
         Session session = sessionFactory.openSession();
         CriteriaQuery<T> criteria = session.getCriteriaBuilder().createQuery(clazz);
         Root<T> root = criteria.from(clazz);
         CriteriaQuery<T> select = criteria.select(root);
         //criteria.where(3)( builder.equal( personRoot.get( Person_.eyeColor ), "brown" ) );
         Query<T> query = session.createQuery(select);
+        query.setFirstResult(start);
+        query.setMaxResults(maxrows);
 
         List<T> resultList = query.getResultList();
         session.close();

@@ -26,7 +26,7 @@ public class DatabaseServiceTest {
         Address address = Address.builder().city("HAHA").build();
         databaseService.save(address);
 
-        List<Address> all = databaseService.getAll(Address.class);
+        List<Address> all = databaseService.getAll(Address.class, 0, 100);
         assertFalse(all.isEmpty());
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -25,8 +26,8 @@ public class SchoolController {
 
     @RequestMapping("/schools")
     @ResponseBody
-    List<SchoolEntry> schools() {
-        return databaseService.getAll(SchoolEntry.class);
+    List<SchoolEntry> schools(@RequestParam("start") Integer start, @RequestParam("size") Integer size) {
+        return databaseService.getAll(SchoolEntry.class, start, size);
     }
 
     @RequestMapping("/school")
