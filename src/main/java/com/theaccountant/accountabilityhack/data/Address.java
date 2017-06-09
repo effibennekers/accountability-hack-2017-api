@@ -11,8 +11,7 @@ import lombok.ToString;
 @ToString
 public final class Address {
     private String streetname;
-    private int streetNr;
-    private String streetNrExt;
+    private String streetNr;
     private String zipcode;
     private String city;
 }

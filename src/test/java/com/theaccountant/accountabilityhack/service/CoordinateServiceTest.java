@@ -8,7 +8,7 @@ public class CoordinateServiceTest {
     @Test
     public void testCoordinates() {
         final CoordinateService service = new CoordinateService();
-        final Address address = new Address("Bijlmerdreef", 24, null, "1102 CT", "Amsterdam-Zuidoost");
+        final Address address = new Address("Bijlmerdreef", "24", "1102 CT", "Amsterdam-Zuidoost");
         System.out.println(service.queryCoordinates(address));
     }
 
