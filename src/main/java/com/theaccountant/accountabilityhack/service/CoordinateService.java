@@ -36,7 +36,7 @@ public final class CoordinateService {
         }
         final String result = (String) json.get("status");
         if (!result.equals("OK")) {
-            return null;
+            System.err.println(String.format("getting status %s for %s", result, address));
         }
         final JSONArray results = (JSONArray) json.get("results");
         final JSONObject geometry = (JSONObject) ((JSONObject) results.get(0)).get("geometry");
