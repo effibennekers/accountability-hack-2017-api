@@ -11,7 +11,7 @@ public final class FileProcessor {
     public static void main(final String...args) throws IOException {
         final SchoolRegistry registry = new SchoolRegistry();
 
-//        new DatabaseReader().process(registry);
+        new DatabaseReader().process(registry);
         new ProcessSchoolLocations().process(registry);
         new LeerlingenAantalProcessor().process(registry);
         new FteAantalProcessor().process(registry);

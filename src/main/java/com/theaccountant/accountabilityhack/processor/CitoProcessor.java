@@ -24,6 +24,6 @@ public final class CitoProcessor implements Processor {
             entry.setCetAverage(reader.getBigDecimal("CET_GEM"));
             entry.setIepAverage(reader.getBigDecimal("IEP_GEM"));
         }
-        System.out.println("Done processing CITO constructions");
+        System.out.println("Done processing CITO constructions: " + registry.size());
     }
 }
