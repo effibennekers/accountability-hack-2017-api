@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.io.IOException;
 import java.util.List;
 
-import static com.theaccountant.accountabilityhack.processDataSets.ProcessSchoolLocations.processInputFile;
+import static com.theaccountant.accountabilityhack.processor.ProcessSchoolLocations.processInputFile;
 
 @SpringBootApplication
 public class AccountabilityHackApplication {

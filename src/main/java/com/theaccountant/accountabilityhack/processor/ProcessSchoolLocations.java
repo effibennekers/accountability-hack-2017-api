@@ -1,4 +1,4 @@
-package com.theaccountant.accountabilityhack.processDataSets;
+package com.theaccountant.accountabilityhack.processor;
 
 import com.theaccountant.accountabilityhack.data.Address;
 import com.theaccountant.accountabilityhack.data.SchoolEntry;
