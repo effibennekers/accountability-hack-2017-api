@@ -25,21 +25,24 @@ public final class CoordinateService {
     public final Coordinate queryCoordinates(final Address address) {
         final String query = String.format("%s %d%s %s, %s", address.getStreetname(), address.getStreetNr(),
                 address.getStreetNrExt() == null ? "" : address.getStreetNrExt(), address.getZipcode(), address.getCity()).replace(' ', '-');
+        final JSONObject json;
         try {
             final URL url = new URL(GOOGLE_API + query);
             final URLConnection conn = url.openConnection();
             final InputStream inputStream = conn.getInputStream();
-            final JSONObject json = (JSONObject) jsonParser.parse(new InputStreamReader(inputStream, "UTF-8"));
-            final JSONArray results = (JSONArray) json.get("results");
-            final JSONObject geometry = (JSONObject) ((JSONObject) results.get(0)).get("geometry");
-            final JSONObject location = (JSONObject) geometry.get("location");
-            final double lat = (Double) location.get("lat");
-            final double lng = (Double) location.get("lng");
-            return new Coordinate(lat, lng);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (ParseException e) {
+            json = (JSONObject) jsonParser.parse(new InputStreamReader(inputStream, "UTF-8"));
+        } catch (IOException | ParseException e) {
             throw new RuntimeException(e);
         }
+        final String result = (String) json.get("status");
+        if (!result.equals("OK")) {
+            return null;
+        }
+        final JSONArray results = (JSONArray) json.get("results");
+        final JSONObject geometry = (JSONObject) ((JSONObject) results.get(0)).get("geometry");
+        final JSONObject location = (JSONObject) geometry.get("location");
+        final double lat = (Double) location.get("lat");
+        final double lng = (Double) location.get("lng");
+        return new Coordinate(lat, lng);
     }
 }
