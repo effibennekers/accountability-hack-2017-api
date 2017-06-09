@@ -3,11 +3,12 @@ package com.theaccountant.accountabilityhack.data;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
+import lombok.ToString;
 
 @AllArgsConstructor
 @Builder
 @Getter
+@ToString
 public final class Address {
     private String streetname;
     private int streetNr;

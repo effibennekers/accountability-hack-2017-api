@@ -2,14 +2,14 @@ package com.theaccountant.accountabilityhack.data;
 
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Builder
 @Getter
 @Setter
-@NoArgsConstructor
-public class SchoolEntry {
+@ToString
+public final class SchoolEntry {
 
     private String brin;
 
