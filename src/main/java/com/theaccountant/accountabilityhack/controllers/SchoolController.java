@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 @Controller
@@ -40,15 +41,15 @@ public class SchoolController {
             final BigDecimal fteDirectie = entry.getFteDirectie();
             final BigDecimal fteLeerkrachten = entry.getFteLeerkrachten();
             final BigDecimal bekostigingPersoneel = entry.getBekostigingPersoneel();
-            final BigDecimal klasgrootte = fteLeerkrachten.intValue() == 0 ? new BigDecimal(0) : leerlingen.divide(fteLeerkrachten);
+            final BigDecimal klasgrootte = fteLeerkrachten.intValue() == 0 ? new BigDecimal(0) : leerlingen.divide(fteLeerkrachten, RoundingMode.HALF_UP);
             final BigDecimal totalIncome = entry.getBekostigingDirectie().add(entry.getBekostigingPersoneel()).add(entry.getBekostigingPersoneelOverig());
             final Ratings ratings = new Ratings();
             ratings.setClassSize(klasgrootte.doubleValue());
             ratings.setIncomePerStudent(totalIncome.doubleValue());
-            ratings.setNonPersonelCostsPerStudent(leerlingen.intValue() == 0 ? 0d : entry.getTotalMaterialInstantHolding().divide(leerlingen).doubleValue());
-            ratings.setFteBoardPerFteTeacher(fteLeerkrachten.intValue() == 0 ? 0d : fteDirectie.divide(fteLeerkrachten).doubleValue());
-            ratings.setCostsBoardPerCostsPersonel(bekostigingPersoneel.intValue() == 0 ? 0d : entry.getBekostigingDirectie().divide(bekostigingPersoneel).doubleValue());
-            ratings.setCitoPerClassSize(klasgrootte.intValue() == 0 ? 0d : entry.getCetAverage().divide(klasgrootte).doubleValue());
+            ratings.setNonPersonelCostsPerStudent(leerlingen.intValue() == 0 ? 0d : entry.getTotalMaterialInstantHolding().divide(leerlingen, RoundingMode.HALF_UP).doubleValue());
+            ratings.setFteBoardPerFteTeacher(fteLeerkrachten.intValue() == 0 ? 0d : fteDirectie.divide(fteLeerkrachten, RoundingMode.HALF_UP).doubleValue());
+            ratings.setCostsBoardPerCostsPersonel(bekostigingPersoneel.intValue() == 0 ? 0d : entry.getBekostigingDirectie().divide(bekostigingPersoneel, RoundingMode.HALF_UP).doubleValue());
+            ratings.setCitoPerClassSize(klasgrootte.intValue() == 0 ? 0d : entry.getCetAverage().divide(klasgrootte, RoundingMode.HALF_UP).doubleValue());
             entry.setRatings(ratings);
         }
     }
