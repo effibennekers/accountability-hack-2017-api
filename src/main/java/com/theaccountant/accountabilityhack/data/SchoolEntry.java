@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.CascadeType;
@@ -21,7 +22,8 @@ import java.math.BigDecimal;
 @Table(name = "schools")
 @NoArgsConstructor
 @AllArgsConstructor
-public class SchoolEntry {
+@ToString
+public final class SchoolEntry {
 
     @Id
     @GeneratedValue(generator = "increment")
