@@ -41,6 +41,6 @@ public final class ProcessSchoolLocations implements Processor {
             entry.setBevoegdGezag(reader.getInt("BEVOEGD GEZAG NUMMER"));
             entry.setName(reader.getString("INSTELLINGSNAAM"));
         }
-        System.out.println("Done processing addresses");
+        System.out.println("Done processing addresses: " + registry.size());
     }
 }

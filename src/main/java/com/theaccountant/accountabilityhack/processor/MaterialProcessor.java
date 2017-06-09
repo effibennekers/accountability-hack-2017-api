@@ -21,6 +21,6 @@ public final class MaterialProcessor implements Processor {
             }
             entry.setTotalMaterialInstantHolding(reader.getBigDecimal("TOTAAL_MI"));
         }
-        System.out.println("Done processing materiele instanthouding");
+        System.out.println("Done processing materiele instanthouding: " + registry.size());
     }
 }

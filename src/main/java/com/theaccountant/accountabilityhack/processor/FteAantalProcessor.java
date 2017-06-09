@@ -42,6 +42,6 @@ public final class FteAantalProcessor implements Processor {
                 break;
             }
         }
-        System.out.println("Done processing aantal FTE");
+        System.out.println("Done processing aantal FTE: " + registry.size());
     }
 }
