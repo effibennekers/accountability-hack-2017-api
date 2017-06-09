@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.math.BigDecimal;
 
 @Builder
@@ -57,4 +58,7 @@ public final class SchoolEntry {
     private BigDecimal bekostigingPersoneelOverig;
 
     private BigDecimal totalMaterialInstantHolding;
+
+    @Transient
+    private Ratings ratings;
 }
