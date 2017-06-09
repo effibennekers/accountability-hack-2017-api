@@ -55,4 +55,6 @@ public final class SchoolEntry {
     private BigDecimal bekostigingPersoneel;
     private BigDecimal bekostigingDirectie;
     private BigDecimal bekostigingPersoneelOverig;
+
+    private BigDecimal totalMaterialInstantHolding;
 }

@@ -16,6 +16,8 @@ public final class FileProcessor {
         new LeerlingenAantalProcessor().process(registry);
         new FteAantalProcessor().process(registry);
         new PersoneelsBekostigingProcessor().process(registry);
+        new CitoProcessor().process(registry);
+        new MaterialProcessor().process(registry);
 //        new CoordinateProcessor().process(registry);
         new DatabaseWriter().process(registry);
 
