@@ -5,10 +5,10 @@ import lombok.Data;
 @Data
 public final class Ratings {
 
-    private double klasgrootte;
-    private double incomePerLeerling;
-    private double nonPersonelCostsPerLeerling;
-    private double fteDirectiePerFteLeerkracht;
-    private double kostenDirectiePerKostenPersoneel;
-    private double citoPerKlasgrootte;
+    private double classSize;
+    private double incomePerStudent;
+    private double nonPersonelCostsPerStudent;
+    private double fteBoardPerFteTeacher;
+    private double costsBoardPerCostsPersonel;
+    private double citoPerClassSize;
 }

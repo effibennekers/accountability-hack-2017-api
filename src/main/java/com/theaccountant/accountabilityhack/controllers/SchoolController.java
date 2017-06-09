@@ -41,12 +41,12 @@ public class SchoolController {
             final BigDecimal klasgrootte = leerlingen.divide(fteLeerkrachten);
             final BigDecimal totalIncome = entry.getBekostigingDirectie().add(entry.getBekostigingPersoneel()).add(entry.getBekostigingPersoneelOverig());
             final Ratings ratings = new Ratings();
-            ratings.setKlasgrootte(klasgrootte.doubleValue());
-            ratings.setIncomePerLeerling(totalIncome.doubleValue());
-            ratings.setNonPersonelCostsPerLeerling(entry.getTotalMaterialInstantHolding().divide(leerlingen).doubleValue());
-            ratings.setFteDirectiePerFteLeerkracht(entry.getFteDirectie().divide(entry.getFteLeerkrachten()).doubleValue());
-            ratings.setKostenDirectiePerKostenPersoneel(entry.getBekostigingDirectie().divide(entry.getBekostigingPersoneel()).doubleValue());
-            ratings.setCitoPerKlasgrootte(entry.getCetAverage().divide(klasgrootte).doubleValue());
+            ratings.setClassSize(klasgrootte.doubleValue());
+            ratings.setIncomePerStudent(totalIncome.doubleValue());
+            ratings.setNonPersonelCostsPerStudent(entry.getTotalMaterialInstantHolding().divide(leerlingen).doubleValue());
+            ratings.setFteBoardPerFteTeacher(entry.getFteDirectie().divide(entry.getFteLeerkrachten()).doubleValue());
+            ratings.setCostsBoardPerCostsPersonel(entry.getBekostigingDirectie().divide(entry.getBekostigingPersoneel()).doubleValue());
+            ratings.setCitoPerClassSize(entry.getCetAverage().divide(klasgrootte).doubleValue());
             entry.setRatings(ratings);
         }
     }
