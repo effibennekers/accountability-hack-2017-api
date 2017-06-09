@@ -37,16 +37,18 @@ public class SchoolController {
     private void enrichWithRatings(final List<SchoolEntry> schools) {
         for (final SchoolEntry entry : schools) {
             final BigDecimal leerlingen = new BigDecimal(entry.getTotaalAantalLeerlingen());
+            final BigDecimal fteDirectie = entry.getFteDirectie();
             final BigDecimal fteLeerkrachten = entry.getFteLeerkrachten();
-            final BigDecimal klasgrootte = leerlingen.divide(fteLeerkrachten);
+            final BigDecimal bekostigingPersoneel = entry.getBekostigingPersoneel();
+            final BigDecimal klasgrootte = fteLeerkrachten.intValue() == 0 ? new BigDecimal(0) : leerlingen.divide(fteLeerkrachten);
             final BigDecimal totalIncome = entry.getBekostigingDirectie().add(entry.getBekostigingPersoneel()).add(entry.getBekostigingPersoneelOverig());
             final Ratings ratings = new Ratings();
             ratings.setClassSize(klasgrootte.doubleValue());
             ratings.setIncomePerStudent(totalIncome.doubleValue());
-            ratings.setNonPersonelCostsPerStudent(entry.getTotalMaterialInstantHolding().divide(leerlingen).doubleValue());
-            ratings.setFteBoardPerFteTeacher(entry.getFteDirectie().divide(entry.getFteLeerkrachten()).doubleValue());
-            ratings.setCostsBoardPerCostsPersonel(entry.getBekostigingDirectie().divide(entry.getBekostigingPersoneel()).doubleValue());
-            ratings.setCitoPerClassSize(entry.getCetAverage().divide(klasgrootte).doubleValue());
+            ratings.setNonPersonelCostsPerStudent(leerlingen.intValue() == 0 ? 0d : entry.getTotalMaterialInstantHolding().divide(leerlingen).doubleValue());
+            ratings.setFteBoardPerFteTeacher(fteLeerkrachten.intValue() == 0 ? 0d : fteDirectie.divide(fteLeerkrachten).doubleValue());
+            ratings.setCostsBoardPerCostsPersonel(bekostigingPersoneel.intValue() == 0 ? 0d : entry.getBekostigingDirectie().divide(bekostigingPersoneel).doubleValue());
+            ratings.setCitoPerClassSize(klasgrootte.intValue() == 0 ? 0d : entry.getCetAverage().divide(klasgrootte).doubleValue());
             entry.setRatings(ratings);
         }
     }
