@@ -18,7 +18,7 @@ public final class FileProcessor {
         new PersoneelsBekostigingProcessor().process(registry);
         new CitoProcessor().process(registry);
         new MaterialProcessor().process(registry);
-//        new CoordinateProcessor().process(registry);
+        new CoordinateProcessor().process(registry);
         new DatabaseWriter().process(registry);
 
         System.out.println("Parsed " + registry.size() + " entries");
