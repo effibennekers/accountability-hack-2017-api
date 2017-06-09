@@ -19,7 +19,8 @@ public final class LeerlingenAantalProcessor implements Processor {
                 registry.addSchool(entry);
             }
 
-            entry.setTotaalAantalLeerlingen(entry.getTotaalAantalLeerlingen() + reader.getInt("TOTAAL"));
+            final int oldValue = entry.getTotaalAantalLeerlingen() == null ? 0 : entry.getTotaalAantalLeerlingen();
+            entry.setTotaalAantalLeerlingen(oldValue + reader.getInt("TOTAAL"));
         }
     }
 }

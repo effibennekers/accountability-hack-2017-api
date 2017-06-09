@@ -24,9 +24,12 @@ public final class SchoolEntry {
     private String name;
 
     private Address address;
-
     private Coordinate geo;
 
-    private int totaalAantalLeerlingen;
+    private Integer totaalAantalLeerlingen;
+
+    private Integer fteDirectie;
+    private Integer fteLeerkrachten;
+    private Integer fteOndersteunend;
 
 }
