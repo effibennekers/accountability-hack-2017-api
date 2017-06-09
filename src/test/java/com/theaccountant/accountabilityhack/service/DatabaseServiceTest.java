@@ -9,7 +9,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
 
 /**
  * TODO: Useful documentation
@@ -24,7 +24,7 @@ public class DatabaseServiceTest {
     @Test
     public void test() {
         Address address = Address.builder().city("HAHA").build();
-       databaseService.save(address);
+        databaseService.save(address);
 
         List<Address> all = databaseService.getAll(Address.class);
         assertFalse(all.isEmpty());
