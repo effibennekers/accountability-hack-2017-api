@@ -2,6 +2,7 @@ package com.theaccountant.accountabilityhack.processor;
 
 import com.theaccountant.accountabilityhack.data.Address;
 import com.theaccountant.accountabilityhack.data.SchoolEntry;
+import com.theaccountant.accountabilityhack.data.SchoolRegistry;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -9,17 +10,15 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-/**
- * Created by hanmarkslag on 09/06/2017.
- */
-public class ProcessSchoolLocations {
-
+public final class ProcessSchoolLocations implements Processor {
 
     private static final java.lang.String COMMA = ";";
 
-    public static void main(String...args) throws IOException {
-        List<SchoolEntry> schools = processInputFile();
-        System.out.println("schools : " + schools.size());
+    @Override
+    public void process(final SchoolRegistry registry) throws IOException {
+        for (final SchoolEntry entry : processInputFile()) {
+            registry.addSchool(entry);
+        }
     }
 
     public static List<SchoolEntry> processInputFile() throws IOException {

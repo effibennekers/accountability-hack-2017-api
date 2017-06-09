@@ -1,12 +1,14 @@
 package com.theaccountant.accountabilityhack.data;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 /**
  * Registry of all school entries.
  */
-public final class SchoolRegistry {
+public final class SchoolRegistry implements Iterable<SchoolEntry> {
 
     private final Map<String, SchoolEntry> map = new HashMap<>();
 
@@ -24,5 +26,10 @@ public final class SchoolRegistry {
             throw new IllegalStateException("School with brin " + brin + " already present!");
         }
         map.put(brin, school);
+    }
+
+    @Override
+    public Iterator<SchoolEntry> iterator() {
+        return new ArrayList<>(map.values()).iterator();
     }
 }
