@@ -32,4 +32,8 @@ public final class SchoolRegistry implements Iterable<SchoolEntry> {
     public Iterator<SchoolEntry> iterator() {
         return new ArrayList<>(map.values()).iterator();
     }
+
+    public final int size() {
+        return map.size();
+    }
 }
