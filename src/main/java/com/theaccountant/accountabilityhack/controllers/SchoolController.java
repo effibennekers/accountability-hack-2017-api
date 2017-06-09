@@ -37,7 +37,7 @@ public class SchoolController {
 
     private void enrichWithRatings(final List<SchoolEntry> schools) {
         for (final SchoolEntry entry : schools) {
-            final BigDecimal leerlingen = new BigDecimal(entry.getTotaalAantalLeerlingen());
+            final BigDecimal leerlingen = entry.getTotaalAantalLeerlingen() == null ? new BigDecimal(0) : new BigDecimal(entry.getTotaalAantalLeerlingen());
             final BigDecimal fteDirectie = entry.getFteDirectie();
             final BigDecimal fteLeerkrachten = entry.getFteLeerkrachten();
             final BigDecimal bekostigingPersoneel = entry.getBekostigingPersoneel();
@@ -49,7 +49,7 @@ public class SchoolController {
             ratings.setNonPersonelCostsPerStudent(leerlingen.intValue() == 0 ? 0d : entry.getTotalMaterialInstantHolding().divide(leerlingen, RoundingMode.HALF_UP).doubleValue());
             ratings.setFteBoardPerFteTeacher(fteLeerkrachten.intValue() == 0 ? 0d : fteDirectie.divide(fteLeerkrachten, RoundingMode.HALF_UP).doubleValue());
             ratings.setCostsBoardPerCostsPersonel(bekostigingPersoneel.intValue() == 0 ? 0d : entry.getBekostigingDirectie().divide(bekostigingPersoneel, RoundingMode.HALF_UP).doubleValue());
-            ratings.setCitoPerClassSize(klasgrootte.intValue() == 0 ? 0d : entry.getCetAverage().divide(klasgrootte, RoundingMode.HALF_UP).doubleValue());
+            ratings.setCitoPerClassSize(entry.getCetAverage() == null || klasgrootte.intValue() == 0 ? 0d : entry.getCetAverage().divide(klasgrootte, RoundingMode.HALF_UP).doubleValue());
             entry.setRatings(ratings);
         }
     }
